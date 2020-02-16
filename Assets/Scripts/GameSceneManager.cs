@@ -38,6 +38,7 @@ public class GameSceneManager : MonoBehaviour
         }
         int rand = UnityEngine.Random.Range(0, playerBlobs.Count);
         currentBlob = playerBlobs[rand];
+        PlayerManager.instance.setCurrentBlob(currentBlob);
         currentBlob.setPlayerControl();
         CameraController.instance.setTransform(currentBlob.transform);
     }
@@ -56,6 +57,7 @@ public class GameSceneManager : MonoBehaviour
         currentBlob.ResetPlayerControl();
         int rand = UnityEngine.Random.Range(0, playerBlobs.Count);
         currentBlob = playerBlobs[rand];
+        PlayerManager.instance.setCurrentBlob(currentBlob);
         currentBlob.setPlayerControl();
         CameraController.instance.setTransform(currentBlob.transform);
     }

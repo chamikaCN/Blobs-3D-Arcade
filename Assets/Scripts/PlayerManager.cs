@@ -20,10 +20,12 @@ public class PlayerManager : MonoBehaviour
 
     Camera cam;
     public LayerMask groundMask;
+    Blob currentBlob;
 
     void Start()
     {
         cam = Camera.main;
+        //currentBlob = GameSceneManager.instance.getCurrentBlob();
     }
 
     void Update()
@@ -35,10 +37,19 @@ public class PlayerManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 100, groundMask))
             {
-                GameSceneManager.instance.getCurrentBlob().ManualMovement(hit.point);
+                currentBlob.ManualMovement(hit.point);
             }
+            
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Space)){
+            currentBlob.Attack();
         }
 
 
+    }
+
+    public void setCurrentBlob(Blob blob){
+        currentBlob = blob;
     }
 }

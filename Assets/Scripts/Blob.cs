@@ -7,6 +7,8 @@ public class Blob : MonoBehaviour
     GameObject[] goals;
     GameObject currentGoal;
     bool playerControlled;
+    Vector3 movingDirection;
+    public GameObject ball;
 
     void Start()
     {
@@ -33,7 +35,6 @@ public class Blob : MonoBehaviour
             agent = GetComponent<NavMeshAgent>();
         }
         agent.isStopped = true;
-        Debug.Log("cat");
     }
 
     public void ResetPlayerControl(){
@@ -63,6 +64,22 @@ public class Blob : MonoBehaviour
         agent.isStopped = false;
         agent.SetDestination(target);
         agent.stoppingDistance = 0f;
+    }
+
+    public void Attack(){
+        Debug.Log("Attacked");
+        Instantiate(ball, new Vector3(transform.position.x,transform.position.y+1,
+            transform.position.z), Quaternion.identity, this.transform);
+    }
+
+    void setMovingDirection(Vector3 direction){
+        if(movingDirection != direction){
+            movingDirection = direction;
+        }
+    }
+
+    public Vector3 getMovingDirection(){
+        return movingDirection;
     }
 
     
